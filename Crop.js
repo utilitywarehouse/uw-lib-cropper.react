@@ -145,11 +145,19 @@ class Crop extends Component {
 		this.setState({drag: null});
 	}
 
+	dragNoSelect(e) {
+		if (!this.state.drag) return;
+
+		e.preventDefault();
+	}
+
 	componentWillReceiveProps(newProps) {
 		if (newProps.image !== this.props.image) {
 			this.prepareImage();
 		}
 	}
+
+
 
 	componentDidMount() {
 		this.prepareImage();
@@ -157,12 +165,14 @@ class Crop extends Component {
 		this.listeners = {
 			move: (e) => this.dragMove(e),
 			start: (e) => this.dragStart(e),
-			end: (e) => this.dragEnd(e)
+			end: (e) => this.dragEnd(e),
+			select: (e) => this.dragNoSelect(e)
 		};
 
 		window.addEventListener('mousemove', this.listeners.move);
 		window.addEventListener('mouseup', this.listeners.end);
 		this.refs.canvas.addEventListener('mousedown', this.listeners.start);
+		document.onselectstart = this.listeners.select;
 
 	}
 
