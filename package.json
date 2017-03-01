@@ -1,0 +1,16 @@
+{
+  "name": "@utilitywarehouse/uw-lib-cropper.react",
+  "version": "1.0.0",
+  "description": "Avatar cropping utility.",
+  "main": "index.js",
+  "repository": "git@github.com:utilitywarehouse/uw-lib-cropper.react.git",
+  "author": "Michael Donat <michael.donat@me.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-dropzone": "^3.11.0"
+  },
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
