@@ -219,7 +219,7 @@ Crop.propTypes = {
 	width: React.PropTypes.number.isRequired,
 	height: React.PropTypes.number.isRequired,
 	zoom: React.PropTypes.number,
-	image: React.PropTypes.objectOf(Image).isRequired
+	image: React.PropTypes.object.isRequired
 };
 
 
