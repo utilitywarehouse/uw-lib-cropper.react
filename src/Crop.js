@@ -14,7 +14,7 @@ class Crop extends Component {
 		}
 	}
 
-	updateZoom = () => {
+	updateZoom() {
 		const factor = this.refs.zoom.value;
 		const {image} = this.state;
 
@@ -194,7 +194,7 @@ class Crop extends Component {
 			zoom = (<div><input
 				type="range"
 				ref="zoom"
-				onChange={this.updateZoom}
+				onChange={this.updateZoom.bind(this)}
 				style={{width: this.props.width}}
 				min="1"
 				max={this.props.zoom}
