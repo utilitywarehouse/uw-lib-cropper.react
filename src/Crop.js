@@ -184,11 +184,11 @@ class Crop extends Component {
 			select: (e) => this.dragNoSelect(e)
 		};
 
-		//window.addEventListener('mousemove', this.listeners.move);
-		//window.addEventListener('mouseup', this.listeners.end);
+		window.addEventListener('mousemove', this.listeners.move);
+		window.addEventListener('mouseup', this.listeners.end);
 		window.addEventListener('touchmove', this.listeners.move);
 		window.addEventListener('touchend', this.listeners.end);
-		//this.refs.canvas.addEventListener('mousedown', this.listeners.start);
+		this.refs.canvas.addEventListener('mousedown', this.listeners.start);
 		this.refs.canvas.addEventListener('touchstart', this.listeners.start);
 		document.onselectstart = this.listeners.select;
 
