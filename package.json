@@ -1,6 +1,6 @@
 {
   "name": "@utilitywarehouse/uw-lib-cropper.react",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Avatar cropping utility.",
   "main": "lib/Crop.js",
   "repository": "git@github.com:utilitywarehouse/uw-lib-cropper.react.git",
