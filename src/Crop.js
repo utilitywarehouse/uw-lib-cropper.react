@@ -85,12 +85,20 @@ class Crop extends Component {
 
 	}
 
+	_eventCoordinates(e) {
+		return e.touches ? e.touches[0] : e;
+	}
+
 	dragStart(e) {
+		e.preventDefault();
+
+		const coordinates = this._eventCoordinates(e);
+
 		const drag = {
 			start: {
 				mouse: {
-					x: e.clientX,
-					y: e.clientY
+					x: coordinates.clientX,
+					y: coordinates.clientY
 				},
 				image: {
 					x: this.state.image.x,
@@ -103,13 +111,18 @@ class Crop extends Component {
 	}
 
 	dragMove(e) {
+
 		if (!this.state.drag) return;
+
+		e.preventDefault();
+
+		const coordinates = this._eventCoordinates(e);
 
 		const {drag, image} = this.state;
 
 		const diff = {
-			x: drag.start.mouse.x - e.clientX,
-			y: drag.start.mouse.y - e.clientY
+			x: drag.start.mouse.x - coordinates.clientX,
+			y: drag.start.mouse.y - coordinates.clientY
 		}
 
 
@@ -139,8 +152,10 @@ class Crop extends Component {
 
 	}
 
-	dragEnd() {
+	dragEnd(e) {
 		if (!this.state.drag) return;
+
+		e.preventDefault();
 
 		this.setState({drag: null});
 	}
@@ -169,17 +184,23 @@ class Crop extends Component {
 			select: (e) => this.dragNoSelect(e)
 		};
 
-		window.addEventListener('mousemove', this.listeners.move);
-		window.addEventListener('mouseup', this.listeners.end);
-		this.refs.canvas.addEventListener('mousedown', this.listeners.start);
+		//window.addEventListener('mousemove', this.listeners.move);
+		//window.addEventListener('mouseup', this.listeners.end);
+		window.addEventListener('touchmove', this.listeners.move);
+		window.addEventListener('touchend', this.listeners.end);
+		//this.refs.canvas.addEventListener('mousedown', this.listeners.start);
+		this.refs.canvas.addEventListener('touchstart', this.listeners.start);
 		document.onselectstart = this.listeners.select;
 
 	}
 
 	componentWillUnmount() {
+		window.removeEventListener('touchmove', this.listeners.move);
+		window.removeEventListener('touchend', this.listeners.end);
 		window.removeEventListener('mousemove', this.listeners.move);
 		window.removeEventListener('mouseup', this.listeners.end);
 		this.refs.canvas.removeEventListener('mousedown', this.listeners.start);
+		this.refs.canvas.removeEventListener('touchstart', this.listeners.start);
 	}
 
 	getDataURL() {
@@ -195,7 +216,9 @@ class Crop extends Component {
 				type="range"
 				ref="zoom"
 				onChange={this.updateZoom.bind(this)}
-				style={{width: this.props.width}}
+				onMouseMove={this.updateZoom.bind(this)}
+				//onMouseUp={this.updateZoom.bind(this)}
+				style={{width: this.props.width, cursor: 'pointer'}}
 				min="1"
 				max={this.props.zoom}
 				step="0.01"
