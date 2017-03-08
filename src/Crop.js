@@ -5,7 +5,8 @@ class Crop extends Component {
 		super();
 		this.state = {
 			drag: null,
-			image: null
+			image: null,
+			pinch: null
 		}
 		this.listeners = {
 			start: null,
@@ -15,12 +16,14 @@ class Crop extends Component {
 	}
 
 	updateZoom() {
+
 		const factor = this.refs.zoom.value;
+
 		const {image} = this.state;
 
 		image.drawWidth = image.width * factor;
 		image.drawHeight = image.height * factor;
-		image.zoom = factor;
+		image.zoom = Math.abs(factor);
 		image.boundary = {
 			x: this.props.width - image.drawWidth,
 			y: this.props.height - image.drawHeight
@@ -85,6 +88,13 @@ class Crop extends Component {
 
 	}
 
+	_distance(e) {
+		const A = {x: e.touches[0].clientX, y: e.touches[0].clientY}
+		const B = {x: e.touches[1].clientX, y: e.touches[1].clientY}
+
+		return Math.sqrt(Math.pow(B.x - A.x, 2) + Math.pow(B.y - A.y, 2));
+	}
+
 	_eventCoordinates(e) {
 		return e.touches ? e.touches[0] : e;
 	}
@@ -92,7 +102,20 @@ class Crop extends Component {
 	dragStart(e) {
 		e.preventDefault();
 
+		if (e.touches && e.touches.length > 2) return;
+
 		const coordinates = this._eventCoordinates(e);
+
+		if (e.touches && e.touches.length == 2) {
+			const drag = {
+				pinch: {
+					max: this.props.width * Math.sqrt(2),
+					start: this._distance(e),
+					zoom: this.state.image.zoom
+				}
+			};
+			return this.setState({drag})
+		}
 
 		const drag = {
 			start: {
@@ -115,6 +138,29 @@ class Crop extends Component {
 		if (!this.state.drag) return;
 
 		e.preventDefault();
+
+		if (this.state.drag.pinch) {
+
+			const { max, start, zoom } = this.state.drag.pinch;
+
+			const distance = this._distance(e);
+
+			const difference = distance - start;
+
+			const direction = difference < 0 ? -1 : 1;
+
+			let factor = (Math.abs(difference) / max) * 2;
+
+			let newZoom = zoom + (factor * direction);
+
+			newZoom = newZoom < 1 ? 1 : newZoom;
+			newZoom = newZoom > this.props.zoom ? this.props.zoom : newZoom;
+
+			this.refs.zoom.value = parseFloat(newZoom).toFixed(2);
+
+			this.updateZoom();
+
+		}
 
 		const coordinates = this._eventCoordinates(e);
 
