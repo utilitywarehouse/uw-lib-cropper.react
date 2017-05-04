@@ -78,14 +78,16 @@ class Crop extends Component {
 
 		const {image} = this.state;
 
-		canvas.getContext('2d').drawImage(
+		const context = canvas.getContext('2d');
+
+		context.clearRect(0, 0, this.props.width, this.props.height);
+		context.drawImage(
 			image.source,
 			image.x,
 			image.y,
 			image.drawWidth,
 			image.drawHeight
-		)
-
+		);
 	}
 
 	_distance(e) {
@@ -255,6 +257,8 @@ class Crop extends Component {
 
 	render() {
 
+		const style = { ...(this.props.style || {}), cursor: 'move' };
+
 		let zoom = null;
 
 		if (this.props.zoom) {
@@ -275,7 +279,7 @@ class Crop extends Component {
 		return (
 			<div>
 				<div>
-					<canvas style={{cursor: 'move'}} width={this.props.width} height={this.props.height} ref="canvas"/>
+					<canvas style={style} width={this.props.width} height={this.props.height} ref="canvas"/>
 				</div>
 				{zoom}
 			</div>
@@ -288,7 +292,8 @@ Crop.propTypes = {
 	width: React.PropTypes.number.isRequired,
 	height: React.PropTypes.number.isRequired,
 	zoom: React.PropTypes.number,
-	image: React.PropTypes.object.isRequired
+	image: React.PropTypes.object.isRequired,
+	style: React.PropTypes.object
 };
 
 
