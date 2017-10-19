@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Crop extends Component {
 	constructor() {
@@ -108,7 +109,7 @@ class Crop extends Component {
 
 		const coordinates = this._eventCoordinates(e);
 
-		if (e.touches && e.touches.length == 2) {
+		if (e.touches && e.touches.length === 2) {
 			const drag = {
 				pinch: {
 					max: this.props.width * Math.sqrt(2),
@@ -289,13 +290,12 @@ class Crop extends Component {
 
 
 Crop.propTypes = {
-	width: React.PropTypes.number.isRequired,
-	height: React.PropTypes.number.isRequired,
-	zoom: React.PropTypes.number,
-	image: React.PropTypes.object.isRequired,
-	style: React.PropTypes.object
+	width: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired,
+	zoom: PropTypes.number,
+	image: PropTypes.object.isRequired,
+	style: PropTypes.object
 };
 
 
 export default Crop;
-
