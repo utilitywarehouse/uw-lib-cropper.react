@@ -1,33 +1,61 @@
 {
-  "name": "@utilitywarehouse/uw-lib-cropper.react",
-  "version": "2.0.0",
-  "description": "Avatar cropping utility.",
-  "main": "lib/Crop.js",
-  "repository": "git@github.com:utilitywarehouse/uw-lib-cropper.react.git",
-  "author": "Michael Donat <michael.donat@me.com>",
-  "license": "MIT",
-  "dependencies": {
-    "react-dropzone": "^3.11.0"
-  },
-  "scripts": {
-    "build": "gulp clean && NODE_ENV=production gulp build"
-  },
-  "peerDependencies": {
-    "react": "^15.4.2 || ^16.0.0",
-    "react-dom": "^15.4.2 || ^16.0.0",
-    "prop-types": "^15.6.0"
-  },
-  "devDependencies": {
-    "babel-eslint": "^4.1.3",
-    "eslint": "^1.6.0",
-    "eslint-plugin-react": "^3.5.1",
-    "gulp": "^3.9.0",
-    "react-component-gulp-tasks": "^0.7.6"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "browserify-shim": {
-    "react": "global:React"
-  }
+	"name": "@utilitywarehouse/uw-lib-cropper.react",
+	"version": "3.0.0",
+	"description": "Avatar cropping utility.",
+	"main": "lib/Crop.js",
+	"repository": "git@github.com:utilitywarehouse/uw-lib-cropper.react.git",
+	"author": "Michael Donat <michael.donat@me.com>",
+	"license": "MIT",
+	"dependencies": {
+		"image-compressor": "^1.2.0",
+		"react-dropzone": "^4.2.9"
+	},
+	"scripts": {
+		"build": "gulp clean && NODE_ENV=production gulp build",
+		"test": "jest"
+	},
+	"peerDependencies": {
+		"prop-types": "^15.6.0",
+		"react": "^16.0.0",
+		"react-dom": "^16.0.0"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-eslint": "^8.2.3",
+		"babel-jest": "^22.4.3",
+		"babel-preset-env": "^1.6.1",
+		"babel-preset-react": "^6.24.1",
+		"canvas-prebuilt": "^1.6.5-prerelease.1",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"eslint": "^4.19.1",
+		"eslint-plugin-react": "^7.7.0",
+		"gulp": "^3.9.1",
+		"jest": "^22.4.3",
+		"prop-types": "^15.6.0",
+		"react": "^16.0.0",
+		"react-component-gulp-tasks": "https://github.com/kimxogus/react-component-gulp-tasks.git#a8e4fa24d13799c4293d8c2df2150100a113d533",
+		"react-dom": "^16.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"browserify-shim": {
+		"react": "global:React"
+	},
+	"jest": {
+		"verbose": false,
+		"setupFiles": [
+			"./lib/setupTests.js"
+		],
+		"modulePaths": [
+			"./src/"
+		],
+		"moduleFileExtensions": [
+			"js"
+		],
+		"testEnvironmentOptions": {
+			"images": "usable"
+		}
+	}
 }
