@@ -11,16 +11,11 @@ var initGulpTasks = require('react-component-gulp-tasks');
  */
 
 var taskConfig = {
-
 	component: {
 		name: 'Crop',
-		dependencies: [
-			'react',
-			'react-dom'
-		],
-		lib: 'lib'
-	}
-
+		dependencies: ['react', 'react-dom'],
+		lib: 'lib',
+	},
 };
 
 initGulpTasks(gulp, taskConfig);
