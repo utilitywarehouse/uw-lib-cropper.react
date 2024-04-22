@@ -1454,11 +1454,11 @@ browserify-rsa@^4.0.0:
     randombytes "^2.0.1"
 
 browserify-shim@^3.8.10:
-  version "3.8.14"
-  resolved "https://registry.yarnpkg.com/browserify-shim/-/browserify-shim-3.8.14.tgz#bf1057026932d3253c75ef7dd714f3b877edec6b"
+  version "3.8.16"
+  resolved "https://registry.yarnpkg.com/browserify-shim/-/browserify-shim-3.8.16.tgz#f65a77d0e249ae9001f9fa31bbae4360be18e467"
   dependencies:
     exposify "~0.5.0"
-    mothership "~0.2.0"
+    mothership "~0.3.0"
     rename-function-calls "~0.1.0"
     resolve "~0.6.1"
     through "~2.3.4"
@@ -3706,7 +3706,7 @@ gulp-util@^3.0.0, gulp-util@^3.0.4, gulp-util@^3.0.5, gulp-util@^3.0.6, gulp-uti
     through2 "^2.0.0"
     vinyl "^0.5.0"
 
-gulp@^3.9.0:
+gulp@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-3.9.1.tgz#571ce45928dd40af6514fc4011866016c13845b4"
   dependencies:
@@ -5434,9 +5434,9 @@ morgan@~1.6.1:
     on-finished "~2.3.0"
     on-headers "~1.0.0"
 
-mothership@~0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/mothership/-/mothership-0.2.0.tgz#93d48a2fbc3e50e2a5fc8ed586f5bc44c65f9a99"
+mothership@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/mothership/-/mothership-0.3.0.tgz#6eddd86a0649f4451f8af1d27c9f63be97bcaf89"
   dependencies:
     find-parent-dir "~0.3.0"
 
