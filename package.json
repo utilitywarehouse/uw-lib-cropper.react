@@ -17,7 +17,7 @@
 	"peerDependencies": {
 		"prop-types": "^15.6.0",
 		"react": "^16.0.0",
-		"react-dom": "^16.0.0"
+		"react-dom": "^19.2.5"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.0",
@@ -35,7 +35,7 @@
 		"prop-types": "^15.6.0",
 		"react": "^16.0.0",
 		"react-component-gulp-tasks": "https://github.com/kimxogus/react-component-gulp-tasks.git#a8e4fa24d13799c4293d8c2df2150100a113d533",
-		"react-dom": "^16.0.0"
+		"react-dom": "^19.2.5"
 	},
 	"publishConfig": {
 		"access": "public"
